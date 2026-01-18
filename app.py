@@ -1,4 +1,5 @@
 from flask import Flask,jsonify,request
+from flask_cors import CORS
 import phonenumbers
 from phonenumbers import geocoder,carrier,timezone,number_type,PhoneNumberType
 def check_phone(number):
@@ -17,6 +18,7 @@ def check_phone(number):
     except Exception as e:
         return{"msg":"error"}
 app=Flask(__name__)
+CORS(app)
 @app.route('/')
 def api_home():
     return jsonify({
